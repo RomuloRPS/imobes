@@ -1,0 +1,55 @@
+
+<div class="container">
+    <div class="col-12 card mt-5">
+        <h1 class="mt-5 text-center">Formulário Imobes</h1>
+        <form #element>
+            
+            <div class="form-group">    
+                <label >Morador</label>
+                <input ngModel [(ngModel)]="user.name"  type="text" class="form-control"  placeholder="Nome" name="name">
+            </div>
+            
+            <div class="form-group">
+              <label>Valor da Hora</label>
+              <input type="number" class="form-control" [(ngModel)]="user.hourValue"  placeholder="R$" name="hourValue">
+            </div>
+
+            <div class="form-group">
+                <label>Meio de Transporte</label>
+                <select name="transport" class="form-control" [(ngModel)]="transportId" (ngModelChange)="changeTransport()" >
+                        <option value="car">Carro</option>
+                        <option value="bus">Onibus</option>
+                        <option value="bike">Bicicleta</option>
+                        <option value="motorcycle">Moto</option>
+                        <option value="skate">Skate</option>
+                        <option value="skooter">Skooter</option>
+                        <option value="">Patinete</option>
+                        <option value="walking">Andando</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                    <label>Endereço Origem</label>
+                    <input placeholder="Procure pelo nome da rua, CEP, bairro, cidade ou estado..." autocorrect="off" [(ngModel)]="originText"
+                    autocapitalize="off" type="text" class="form-control" focus #origin name="origin">
+            </div>
+
+            <div class="form-group">
+                    <label>Endereço Destino</label>
+                    <input placeholder="Procure pelo nome da rua, CEP, bairro, cidade ou estado..." autocorrect="off" [(ngModel)]="destinationText"
+                    autocapitalize="off" type="text" class="form-control" focus #destination name="destination">
+            </div>
+
+
+            <agm-map  style="height: 500px;" [latitude]="lat" [longitude]="lng">
+
+                    <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination" ></agm-direction>
+                  
+            </agm-map>
+            <
+            <button type="button" (click)="submit()" class="btn btn-primary">Submit</button>
+          </form>
+
+    </div>
+</div>
+
